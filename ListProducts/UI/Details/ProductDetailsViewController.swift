@@ -1,5 +1,5 @@
 //
-//  AddProductViewController.swift
+//  ProductDetailsViewController.swift
 //  ListProducts
 //
 //  Created by Давид Михайлов on 16.02.2021.
@@ -15,9 +15,9 @@ protocol ProductDetailsUI: class {
 class ProductDetailsViewController : UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, ProductDetailsUI {
     
     func dataChanged() {
-        saveButton.isHidden = !presenter.canEdit
-        addImageButton.isHidden = !presenter.canEdit
-        removeButton.isHidden = !presenter.canEdit
+//        saveButton.isHidden = !presenter.canEdit
+//        addImageButton.isHidden = !presenter.canEdit
+//        removeButton.isHidden = !presenter.canEdit
     }
     
     var presenter: ProductDetailsPresenterProtocol!

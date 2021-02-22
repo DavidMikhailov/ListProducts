@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  ProductListViewController.swift
 //  ListProducts
 //
 //  Created by Давид Михайлов on 16.02.2021.
@@ -47,24 +47,20 @@ class ProductListViewController: UITableViewController, ProductListProtocol {
         return presenter.items.count
     }
     
-    var selectedRow: Int? = nil
+    var selectedProduct: ProductViewModel? = nil
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        selectedRow = indexPath.row
+        selectedProduct = presenter.items[indexPath.row]
         performSegue(withIdentifier: "showProductDetails", sender: self)
-        
-        // let vc = self.storyboard!
-//            .instantiateViewController(identifier: )
-        // self.destination = vc
-//      prepare(self)
-        // showDetailViewController(vc, sender: self)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let details = segue.destination as? ProductDetailsPresenterProtocol {
-            let productId = presenter.getId(by: selectedRow)            
+        if let navigation = segue.destination as? UINavigationController,
+           let details = navigation.topViewController as? ProductDetailsViewController {
+            
+            let productId = selectedProduct!.id
             let detailsPresenter = ProductDetailsPresenter(context: .exising(productId))
             details.presenter = detailsPresenter
-            self.selectedRow = nil
+            self.selectedProduct = nil
         }
     }
 }

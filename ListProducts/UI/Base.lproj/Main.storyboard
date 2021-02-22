@@ -92,154 +92,176 @@
             </objects>
             <point key="canvasLocation" x="1944.9275362318842" y="-247.09821428571428"/>
         </scene>
-        <!--Товар-->
-        <scene sceneID="D2f-SA-Syy">
+        <!--Product Details View Controller-->
+        <scene sceneID="lkb-6P-AFT">
             <objects>
-                <viewController storyboardIdentifier="ProductDetailsViewController" id="NZy-IN-FdC" customClass="ProductDetailsViewController" customModule="ListProducts" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="h54-7g-pll">
+                <viewController storyboardIdentifier="ProductDetailsViewController" id="PKS-EA-YSK" customClass="ProductDetailsViewController" customModule="ListProducts" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="aMi-8d-GJa">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="ikk-gG-i5M">
-                                <rect key="frame" x="20" y="108" width="374" height="700.5"/>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RUg-yR-pA9">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="696"/>
                                 <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="1Jz-Rx-51o">
-                                        <rect key="frame" x="0.0" y="0.0" width="374" height="89.5"/>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ghC-GY-taV" userLabel="ContentView">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="402.5"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Название" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ig2-4V-9pN">
-                                                <rect key="frame" x="134.5" y="0.0" width="105.5" height="25.5"/>
-                                                <fontDescription key="fontDescription" name="TamilSangamMN" family="Tamil Sangam MN" pointSize="23"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <textField opaque="NO" alpha="0.29999999999999999" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cFw-bX-ejP">
-                                                <rect key="frame" x="0.0" y="55.5" width="374" height="34"/>
-                                                <color key="backgroundColor" systemColor="systemGreenColor"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits"/>
-                                            </textField>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="Yc1-0X-8s8">
+                                                <rect key="frame" x="8" y="8" width="398" height="242.5"/>
+                                                <subviews>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="y2A-aJ-TMn">
+                                                        <rect key="frame" x="8" y="8" width="382" height="67.5"/>
+                                                        <subviews>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Название" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zvy-mX-qLR">
+                                                                <rect key="frame" x="0.0" y="0.0" width="382" height="25.5"/>
+                                                                <fontDescription key="fontDescription" name="TamilSangamMN" family="Tamil Sangam MN" pointSize="23"/>
+                                                                <nil key="textColor"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                            <textField opaque="NO" alpha="0.30000001192092896" contentMode="scaleToFill" verticalHuggingPriority="249" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="n1F-10-Y3w">
+                                                                <rect key="frame" x="0.0" y="33.5" width="382" height="34"/>
+                                                                <color key="backgroundColor" systemColor="systemGreenColor"/>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                                                            </textField>
+                                                        </subviews>
+                                                    </stackView>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="oSK-Ga-4p8">
+                                                        <rect key="frame" x="8" y="91.5" width="382" height="143"/>
+                                                        <subviews>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Цена" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oQh-Tl-Urh">
+                                                                <rect key="frame" x="0.0" y="0.0" width="382" height="25.5"/>
+                                                                <fontDescription key="fontDescription" name="TamilSangamMN" family="Tamil Sangam MN" pointSize="23"/>
+                                                                <nil key="textColor"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                            <textField opaque="NO" alpha="0.30000001192092896" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="wqv-Zd-eXA">
+                                                                <rect key="frame" x="0.0" y="33.5" width="382" height="34"/>
+                                                                <color key="backgroundColor" systemColor="systemGreenColor"/>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                                                            </textField>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Количество" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gpq-Hw-Tef">
+                                                                <rect key="frame" x="0.0" y="75.5" width="382" height="25.5"/>
+                                                                <fontDescription key="fontDescription" name="TamilSangamMN" family="Tamil Sangam MN" pointSize="23"/>
+                                                                <nil key="textColor"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                            <textField opaque="NO" alpha="0.30000001192092896" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="6Nt-df-nov">
+                                                                <rect key="frame" x="0.0" y="109" width="382" height="34"/>
+                                                                <color key="backgroundColor" systemColor="systemGreenColor"/>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                                                            </textField>
+                                                        </subviews>
+                                                    </stackView>
+                                                </subviews>
+                                                <edgeInsets key="layoutMargins" top="8" left="8" bottom="8" right="8"/>
+                                            </stackView>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="QBU-OC-A76">
+                                                <rect key="frame" x="147" y="266.5" width="120" height="120"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="120" id="3fr-Zm-eCh"/>
+                                                    <constraint firstAttribute="height" constant="120" id="Hpg-zi-4UW"/>
+                                                </constraints>
+                                            </imageView>
                                         </subviews>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
-                                            <constraint firstAttribute="trailing" secondItem="cFw-bX-ejP" secondAttribute="trailing" id="An0-e3-kup"/>
-                                            <constraint firstItem="ig2-4V-9pN" firstAttribute="centerX" secondItem="1Jz-Rx-51o" secondAttribute="centerX" id="Ld6-Rc-xl2"/>
-                                            <constraint firstItem="cFw-bX-ejP" firstAttribute="leading" secondItem="1Jz-Rx-51o" secondAttribute="leading" id="nsZ-ra-c6F"/>
+                                            <constraint firstAttribute="bottom" secondItem="QBU-OC-A76" secondAttribute="bottom" constant="16" id="7PY-Od-mXm"/>
+                                            <constraint firstItem="QBU-OC-A76" firstAttribute="centerX" secondItem="ghC-GY-taV" secondAttribute="centerX" id="F8b-EF-wi6"/>
+                                            <constraint firstItem="Yc1-0X-8s8" firstAttribute="top" secondItem="ghC-GY-taV" secondAttribute="topMargin" id="Y1Q-Je-XMM"/>
+                                            <constraint firstItem="QBU-OC-A76" firstAttribute="top" secondItem="Yc1-0X-8s8" secondAttribute="bottom" constant="16" id="ivh-wE-PUI"/>
+                                            <constraint firstItem="Yc1-0X-8s8" firstAttribute="leading" secondItem="ghC-GY-taV" secondAttribute="leadingMargin" id="lmZ-Fu-JFd"/>
+                                            <constraint firstAttribute="trailingMargin" secondItem="Yc1-0X-8s8" secondAttribute="trailing" id="u0B-vU-6FC"/>
                                         </constraints>
-                                    </stackView>
-                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="deT-TD-LNJ">
-                                        <rect key="frame" x="0.0" y="119.5" width="374" height="89.5"/>
-                                        <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Количество" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wHY-Kf-GSY">
-                                                <rect key="frame" x="123" y="0.0" width="128.5" height="25.5"/>
-                                                <fontDescription key="fontDescription" name="TamilSangamMN" family="Tamil Sangam MN" pointSize="23"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <textField opaque="NO" alpha="0.29999999999999999" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="x0B-0l-xTR">
-                                                <rect key="frame" x="0.0" y="55.5" width="374" height="34"/>
-                                                <color key="backgroundColor" systemColor="systemGreenColor"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
-                                            </textField>
-                                        </subviews>
-                                        <constraints>
-                                            <constraint firstItem="x0B-0l-xTR" firstAttribute="leading" secondItem="deT-TD-LNJ" secondAttribute="leading" id="0yh-4x-SaL"/>
-                                            <constraint firstAttribute="trailing" secondItem="x0B-0l-xTR" secondAttribute="trailing" id="FJR-J1-vhp"/>
-                                            <constraint firstItem="wHY-Kf-GSY" firstAttribute="centerX" secondItem="deT-TD-LNJ" secondAttribute="centerX" id="taZ-h0-CJZ"/>
-                                        </constraints>
-                                    </stackView>
-                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="qVj-P1-AsO">
-                                        <rect key="frame" x="0.0" y="239" width="374" height="89.5"/>
-                                        <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Цена" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6jU-AR-a2H">
-                                                <rect key="frame" x="159.5" y="0.0" width="55.5" height="25.5"/>
-                                                <fontDescription key="fontDescription" name="TamilSangamMN" family="Tamil Sangam MN" pointSize="23"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <textField opaque="NO" alpha="0.29999999999999999" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="MBP-hY-wZK">
-                                                <rect key="frame" x="0.0" y="55.5" width="374" height="34"/>
-                                                <color key="backgroundColor" systemColor="systemGreenColor"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
-                                            </textField>
-                                        </subviews>
-                                        <constraints>
-                                            <constraint firstAttribute="trailing" secondItem="MBP-hY-wZK" secondAttribute="trailing" id="K1j-gr-MdI"/>
-                                            <constraint firstItem="MBP-hY-wZK" firstAttribute="leading" secondItem="qVj-P1-AsO" secondAttribute="leading" id="iG7-wg-9Sg"/>
-                                            <constraint firstItem="6jU-AR-a2H" firstAttribute="centerX" secondItem="qVj-P1-AsO" secondAttribute="centerX" id="p28-gR-aVm"/>
-                                        </constraints>
-                                    </stackView>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="pZe-C0-yaf">
-                                        <rect key="frame" x="112" y="358.5" width="150" height="150"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="150" id="XhQ-sG-Vfz"/>
-                                            <constraint firstAttribute="height" constant="150" id="qbo-o8-d3n"/>
-                                        </constraints>
-                                    </imageView>
-                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="ibg-9q-xkZ">
-                                        <rect key="frame" x="0.0" y="538.5" width="374" height="162"/>
-                                        <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YyF-LA-zgE">
-                                                <rect key="frame" x="0.0" y="0.0" width="374" height="34"/>
-                                                <color key="backgroundColor" red="0.38753679390000001" green="0.81102412940000002" blue="0.98946350810000006" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <fontDescription key="fontDescription" name="TamilSangamMN" family="Tamil Sangam MN" pointSize="19"/>
-                                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <state key="normal" title="Добавить изображение"/>
-                                                <connections>
-                                                    <action selector="addImageTapped:" destination="NZy-IN-FdC" eventType="touchUpInside" id="cEJ-FM-OwW"/>
-                                                </connections>
-                                            </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BYd-hT-4sH">
-                                                <rect key="frame" x="0.0" y="64" width="374" height="34"/>
-                                                <color key="backgroundColor" systemColor="systemGreenColor"/>
-                                                <fontDescription key="fontDescription" name="TamilSangamMN" family="Tamil Sangam MN" pointSize="19"/>
-                                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <state key="normal" title="Сохранить"/>
-                                                <connections>
-                                                    <action selector="saveAction:" destination="NZy-IN-FdC" eventType="touchUpInside" id="j3X-Kk-YP2"/>
-                                                </connections>
-                                            </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ieU-Wb-ZAY">
-                                                <rect key="frame" x="0.0" y="128" width="374" height="34"/>
-                                                <color key="backgroundColor" systemColor="systemRedColor"/>
-                                                <fontDescription key="fontDescription" name="TamilSangamMN" family="Tamil Sangam MN" pointSize="19"/>
-                                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <state key="normal" title="Удалить товар"/>
-                                            </button>
-                                        </subviews>
-                                    </stackView>
+                                    </view>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstAttribute="trailing" secondItem="ibg-9q-xkZ" secondAttribute="trailing" id="1z9-1Y-Lv3"/>
-                                    <constraint firstAttribute="trailing" secondItem="qVj-P1-AsO" secondAttribute="trailing" id="54N-pe-LGf"/>
-                                    <constraint firstItem="qVj-P1-AsO" firstAttribute="leading" secondItem="ikk-gG-i5M" secondAttribute="leading" id="PYz-XD-R9g"/>
-                                    <constraint firstAttribute="trailing" secondItem="1Jz-Rx-51o" secondAttribute="trailing" id="SZZ-n5-5k8"/>
-                                    <constraint firstAttribute="trailing" secondItem="deT-TD-LNJ" secondAttribute="trailing" id="VJu-OI-IG3"/>
+                                    <constraint firstItem="ghC-GY-taV" firstAttribute="width" secondItem="RUg-yR-pA9" secondAttribute="width" id="O7y-Qh-fc5"/>
+                                    <constraint firstItem="ghC-GY-taV" firstAttribute="leading" secondItem="RUg-yR-pA9" secondAttribute="leading" id="fEJ-ii-sGG"/>
+                                    <constraint firstAttribute="bottom" secondItem="ghC-GY-taV" secondAttribute="bottom" id="lyb-BW-GxV"/>
+                                    <constraint firstAttribute="trailing" secondItem="ghC-GY-taV" secondAttribute="trailing" id="xCp-re-r4v"/>
+                                    <constraint firstItem="ghC-GY-taV" firstAttribute="top" secondItem="RUg-yR-pA9" secondAttribute="top" id="zci-dQ-Qg4"/>
                                 </constraints>
+                                <viewLayoutGuide key="contentLayoutGuide" id="eAe-FO-lcj"/>
+                                <viewLayoutGuide key="frameLayoutGuide" id="ZCy-Vy-faZ"/>
+                            </scrollView>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="8el-jY-Xvb" userLabel="Buttons">
+                                <rect key="frame" x="16" y="712" width="382" height="134"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RY7-RM-mXw">
+                                        <rect key="frame" x="0.0" y="0.0" width="382" height="34"/>
+                                        <color key="backgroundColor" red="0.38753679390000001" green="0.81102412940000002" blue="0.98946350810000006" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <fontDescription key="fontDescription" name="TamilSangamMN" family="Tamil Sangam MN" pointSize="19"/>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <state key="normal" title="Добавить изображение"/>
+                                        <connections>
+                                            <action selector="addImageTapped:" destination="PKS-EA-YSK" eventType="touchUpInside" id="rqR-vc-63h"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yQu-Y6-IN2">
+                                        <rect key="frame" x="0.0" y="50" width="382" height="34"/>
+                                        <color key="backgroundColor" systemColor="systemGreenColor"/>
+                                        <fontDescription key="fontDescription" name="TamilSangamMN" family="Tamil Sangam MN" pointSize="19"/>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <state key="normal" title="Сохранить"/>
+                                        <connections>
+                                            <action selector="saveAction:" destination="PKS-EA-YSK" eventType="touchUpInside" id="DlN-Fg-NQA"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ovw-19-14D">
+                                        <rect key="frame" x="0.0" y="100" width="382" height="34"/>
+                                        <color key="backgroundColor" systemColor="systemRedColor"/>
+                                        <fontDescription key="fontDescription" name="TamilSangamMN" family="Tamil Sangam MN" pointSize="19"/>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <state key="normal" title="Удалить товар"/>
+                                    </button>
+                                </subviews>
                             </stackView>
                         </subviews>
-                        <viewLayoutGuide key="safeArea" id="Kfs-oF-j9q"/>
+                        <viewLayoutGuide key="safeArea" id="uZo-o7-Fjc"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="ikk-gG-i5M" firstAttribute="centerX" secondItem="Kfs-oF-j9q" secondAttribute="centerX" id="TCl-EJ-9VH"/>
-                            <constraint firstItem="ikk-gG-i5M" firstAttribute="leading" secondItem="Kfs-oF-j9q" secondAttribute="leading" constant="20" id="cwM-p0-cSe"/>
-                            <constraint firstItem="ikk-gG-i5M" firstAttribute="top" secondItem="Kfs-oF-j9q" secondAttribute="top" constant="20" id="eJt-O0-5CZ"/>
-                            <constraint firstItem="Kfs-oF-j9q" firstAttribute="trailing" secondItem="ikk-gG-i5M" secondAttribute="trailing" constant="20" id="ffO-2W-i3W"/>
-                            <constraint firstItem="ikk-gG-i5M" firstAttribute="centerX" secondItem="Kfs-oF-j9q" secondAttribute="centerX" id="p9i-ma-9O3"/>
+                            <constraint firstItem="uZo-o7-Fjc" firstAttribute="bottom" secondItem="8el-jY-Xvb" secondAttribute="bottom" constant="16" id="1db-ja-mpA"/>
+                            <constraint firstItem="8el-jY-Xvb" firstAttribute="top" secondItem="RUg-yR-pA9" secondAttribute="bottom" constant="16" id="KKL-Jl-DL4"/>
+                            <constraint firstItem="RUg-yR-pA9" firstAttribute="leading" secondItem="aMi-8d-GJa" secondAttribute="leading" id="QOh-KL-NWb"/>
+                            <constraint firstAttribute="trailing" secondItem="RUg-yR-pA9" secondAttribute="trailing" id="TGA-jf-ZTH"/>
+                            <constraint firstItem="RUg-yR-pA9" firstAttribute="top" secondItem="aMi-8d-GJa" secondAttribute="top" id="cCg-UR-S6H"/>
+                            <constraint firstItem="uZo-o7-Fjc" firstAttribute="trailing" secondItem="8el-jY-Xvb" secondAttribute="trailing" constant="16" id="mdG-wp-fM6"/>
+                            <constraint firstItem="8el-jY-Xvb" firstAttribute="leading" secondItem="uZo-o7-Fjc" secondAttribute="leading" constant="16" id="oaP-Ms-XlK"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Товар" id="Q0i-bx-QJK"/>
+                    <navigationItem key="navigationItem" id="I2i-9h-r0E"/>
                     <connections>
-                        <outlet property="addImageButton" destination="YyF-LA-zgE" id="5zG-GX-FHo"/>
-                        <outlet property="imageView" destination="pZe-C0-yaf" id="aC7-mt-YSl"/>
-                        <outlet property="nameProductTextField" destination="cFw-bX-ejP" id="6xt-sI-77N"/>
-                        <outlet property="priceTextField" destination="MBP-hY-wZK" id="0Tw-1D-INi"/>
-                        <outlet property="quantityProductTextField" destination="x0B-0l-xTR" id="UOD-LU-Qtz"/>
-                        <outlet property="removeButton" destination="ieU-Wb-ZAY" id="YPa-Al-DHl"/>
-                        <outlet property="saveButton" destination="BYd-hT-4sH" id="tlM-1z-a14"/>
+                        <outlet property="addImageButton" destination="RY7-RM-mXw" id="cGN-F6-mEK"/>
+                        <outlet property="imageView" destination="QBU-OC-A76" id="Y9s-Q9-5OP"/>
+                        <outlet property="nameProductTextField" destination="n1F-10-Y3w" id="Wfc-5R-G0M"/>
+                        <outlet property="priceTextField" destination="wqv-Zd-eXA" id="hBl-OU-Mm8"/>
+                        <outlet property="quantityProductTextField" destination="6Nt-df-nov" id="UYW-Ex-2PU"/>
+                        <outlet property="saveButton" destination="yQu-Y6-IN2" id="aES-0W-Dvn"/>
                     </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Smi-50-gdU" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="PcO-V3-nON" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" id="Pyw-b8-bHx">
+                    <rect key="frame" x="0.0" y="0.0" width="105.5" height="67.5"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Название" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LVc-HD-z2F">
+                            <rect key="frame" x="0.0" y="0.0" width="105.5" height="25.5"/>
+                            <fontDescription key="fontDescription" name="TamilSangamMN" family="Tamil Sangam MN" pointSize="23"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <textField opaque="NO" alpha="0.30000001192092896" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cyc-s2-SRp">
+                            <rect key="frame" x="0.0" y="33.5" width="105.5" height="34"/>
+                            <color key="backgroundColor" systemColor="systemGreenColor"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                        </textField>
+                    </subviews>
+                    <viewLayoutGuide key="safeArea" id="dZ9-J1-2BO"/>
+                </stackView>
             </objects>
             <point key="canvasLocation" x="1945" y="475"/>
         </scene>
@@ -283,7 +305,7 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="NZy-IN-FdC" kind="relationship" relationship="rootViewController" id="6zx-ye-bYW"/>
+                        <segue destination="PKS-EA-YSK" kind="relationship" relationship="rootViewController" id="VoU-hb-rIR"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gMd-NI-R9Y" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

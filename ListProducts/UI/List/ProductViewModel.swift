@@ -8,6 +8,7 @@
 import UIKit
 
 struct ProductViewModel {
+    let id: Product.Id
     let name: String
     let count: Int
     let price: String

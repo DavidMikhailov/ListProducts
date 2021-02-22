@@ -29,7 +29,7 @@ class ProductDetailsPresenter: ProductDetailsPresenterProtocol {
     
     func load(ui: ProductDetailsUI) {
         self.ui = ui
-        
+        ui.dataChanged()
     }
     
     var canEdit: Bool {
