@@ -17,35 +17,39 @@ protocol ProductListPresenterProtocol: class {
 
 class ProductListPresenter: ProductListPresenterProtocol {
     weak var ui: ProductListProtocol!
+    let service: ProductsServiceProtocol
+    
+    init(service: ProductsServiceProtocol) {
+        self.service = service
+    }
     
     func load(ui: ProductListProtocol) {
-//        service.load() {
-//
-//        }
+        
         self.ui = ui
-        self.ui.dataChanged()
+        
+        service.getProductList(onComplete: { [weak self] products in
+            guard let self = self else {
+                return
+            }
+            let viewModels = products.map {
+                ProductViewModel(
+                    id: $0.id,
+                    name: $0.name,
+                    count: "\($0.count) шт.",
+                    price: "\($0.price) р.",
+                    productImage: $0.image
+                )
+            }
+            self.items = viewModels
+            DispatchQueue.main.async {
+                self.ui.dataChanged()
+            }            
+        })
     }
     
     func getProductId(by row: Int) -> Product.Id {
         return items[row].id
     }
     
-    let items = [
-        ProductViewModel(
-            id: "some_id_1",
-            name: "Мыло",
-            count: 2,
-            price: "10 руб.",
-            productImage: UIImage(named: "soap")!
-        ),
-        ProductViewModel(
-            id: "some_id_2",
-            name: "Мыло",
-            count: 10,
-            price: "120 руб.",
-            productImage: UIImage(named: "soap")!
-        ),
-    ]
-    
-    
+    var items: [ProductViewModel] = []
 }

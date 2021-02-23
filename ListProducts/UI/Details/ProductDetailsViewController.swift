@@ -7,6 +7,7 @@
 
 import UIKit
 import Photos
+import RealmSwift
 
 protocol ProductDetailsUI: class {
     func dataChanged()
@@ -15,9 +16,13 @@ protocol ProductDetailsUI: class {
 class ProductDetailsViewController : UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, ProductDetailsUI {
     
     func dataChanged() {
-//        saveButton.isHidden = !presenter.canEdit
-//        addImageButton.isHidden = !presenter.canEdit
-//        removeButton.isHidden = !presenter.canEdit
+        removeButton.isHidden = !presenter.canEdit
+        if let product = presenter.existingProduct {
+            nameProductTextField.text = product.name
+            quantityProductTextField.text = "\(product.count)"
+            priceTextField.text = "\(product.price)"
+            imageView.image = product.image
+        }
     }
     
     var presenter: ProductDetailsPresenterProtocol!
@@ -31,8 +36,26 @@ class ProductDetailsViewController : UIViewController, UIImagePickerControllerDe
     @IBOutlet weak var saveButton: UIButton!
     @IBOutlet weak var removeButton: UIButton!
     
+    @IBAction func removeAction(_ sender: Any) {
+        presenter.remove()
+    }
+    
     @IBAction func saveAction(_ sender: Any) {
-        
+        if presenter.canEdit {
+            presenter.edit(
+                name: nameProductTextField.text ?? "",
+                count: quantityProductTextField.text ?? "",
+                price: priceTextField.text ?? "",
+                image: imageView.image
+            )
+        } else {
+            presenter.create(
+                name: nameProductTextField.text ?? "",
+                count: quantityProductTextField.text ?? "",
+                price: priceTextField.text ?? "",
+                image: imageView.image
+            )
+        }
     }
     
     override func viewDidLoad() {

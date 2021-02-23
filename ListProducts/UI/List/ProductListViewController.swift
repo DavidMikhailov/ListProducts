@@ -22,16 +22,21 @@ class ProductListViewController: UITableViewController, ProductListProtocol {
             .instantiateViewController(identifier: String(describing: ProductDetailsViewController.self))
             as! ProductDetailsViewController
         
-        let detailsPresenter = ProductDetailsPresenter(context: .new)
+        let detailsPresenter = ProductDetailsPresenter(context: .new, service: productsService)
         productDetailsVc.presenter = detailsPresenter
         
         showDetailViewController(productDetailsVc, sender: self)
     }
     
-    var presenter: ProductListPresenterProtocol = ProductListPresenter()
+    var presenter: ProductListPresenterProtocol = ProductListPresenter(service: productsService)
     
     override func viewDidLoad() {
         super.viewDidLoad()
+//        presenter.load(ui: self)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         presenter.load(ui: self)
     }
 
@@ -58,7 +63,7 @@ class ProductListViewController: UITableViewController, ProductListProtocol {
            let details = navigation.topViewController as? ProductDetailsViewController {
             
             let productId = selectedProduct!.id
-            let detailsPresenter = ProductDetailsPresenter(context: .exising(productId))
+            let detailsPresenter = ProductDetailsPresenter(context: .exising(productId), service: productsService)
             details.presenter = detailsPresenter
             self.selectedProduct = nil
         }

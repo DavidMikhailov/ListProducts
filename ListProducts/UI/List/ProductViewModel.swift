@@ -10,7 +10,7 @@ import UIKit
 struct ProductViewModel {
     let id: Product.Id
     let name: String
-    let count: Int
+    let count: String
     let price: String
-    let productImage: UIImage
+    let productImage: UIImage?
 }

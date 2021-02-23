@@ -1,0 +1,180 @@
+diff a/ListProducts/Service/ProductService.swift b/ListProducts/Service/ProductService.swift	(rejected hunks)
+@@ -1,51 +1,133 @@
+-////
+-////  ProductService.swift
+-////  ListProducts
+-////
+-////  Created by Давид Михайлов on 19.02.2021.
+-////
+ //
+-//import Foundation
++//  ProductService.swift
++//  ListProducts
+ //
+-//protocol ProductServiceProtocol: class {
+-//    /// Create
+-//    func create(product: Product, onComplete: @escaping (Error?) -> Void)
+-//    
+-//    /// Read
+-//    func getProductList(onComplete: @escaping ([Product]) -> Void)
+-//    func getProduct(id: Product.Id, onComplete: @escaping (Product) -> Void)
+-//    
+-//    /// Update
+-//    func edit(product: Product, onComplete: @escaping (Error?) -> Void)
+-//    
+-//    /// Delete
+-//    func delete(id: Product.Id, onComplete: @escaping (Error?) -> Void)
+-//}
++//  Created by Давид Михайлов on 19.02.2021.
+ //
+-//class ProductService: ProductServiceProtocol {
+-//    
+-//    let realm: RealmDB
+-//    
+-//    /// Create
+-//    func create(product: Product, onComplete: @escaping (Error?) -> Void) {
+-//        
+-//    }
+-//    
+-//    /// Read
+-//    func getProductList(onComplete: @escaping ([Product]) -> Void) {
+-//        realm.readList() { objects in
+-//            let products = objects.map {}
+-//            complete(products)
++
++import Foundation
++import RealmSwift
++
++protocol ProductsServiceProtocol: class {
++    /// Create
++    func create(product: Product, onComplete: @escaping (Error?) -> Void)
++    
++    /// Read
++    func getProductList(onComplete: @escaping ([Product]) -> Void)
++    func getProduct(id: Product.Id, onComplete: @escaping (Product) -> Void)
++
++    /// Update
++    func edit(product: Product, onComplete: @escaping (Error?) -> Void)
++
++    /// Delete
++    func delete(id: Product.Id, onComplete: @escaping (Error?) -> Void)
++}
++
++class ProductsService: ProductsServiceProtocol {
++    
++    private let database: ProductDatabase
++    private let bgQueue = DispatchQueue.global(qos: .background)
++    
++    init(database: ProductDatabase) {
++        self.database = database
++    }
++
++    /// Create
++    func create(product: Product, onComplete: @escaping (Error?) -> Void) {
++        bgQueue.async {
++            let product = ProductRealmModel(
++                id: product.id,
++                name: product.name,
++                price: product.price,
++                count: product.count,
++                imageData: product.image?.jpegData(compressionQuality: 0.2),
++                dateCreated: Date()
++            )
++            do {
++                try self.database.create(product: product)
++                onComplete(nil)
++            } catch {
++                onComplete(error)
++            }
++        }
++    }
++    
++    func getProductList(onComplete: @escaping ([Product]) -> Void) {
++        bgQueue.async {
++            let results = self.database.readAll().sorted(byKeyPath: "dateCreated")
++            let models = results.map { realmModel in
++                Product.make(from: realmModel)
++            }
++            onComplete(Array(models))
++        }
++    }
++        
++    func getProduct(id: Product.Id, onComplete: @escaping (Product) -> Void) {
++        bgQueue.async {
++            let predicate = NSPredicate(format: "id = %@", id)
++            let results = self.database.readAll().filter(predicate)
++            let product = Product.make(from: results.first!)
++            onComplete(product)
++        }
++    }
++
++    /// Update
++    func edit(product: Product, onComplete: @escaping (Error?) -> Void) {
++        bgQueue.async {
++            let product = ProductRealmModel(
++                id: product.id,
++                name: product.name,
++                price: product.price,
++                count: product.count,
++                imageData: product.image?.jpegData(compressionQuality: 0.2),
++                dateCreated: product.dateCreated
++            )
++            do {
++                try self.database.edit(product: product)
++                onComplete(nil)
++            } catch {
++                onComplete(error)
++            }
++        }
++    }
++
++    /// Delete
++    func delete(id: Product.Id, onComplete: @escaping (Error?) -> Void) {
++        bgQueue.async {
++            do {
++                try self.database.delete(productId: id)
++                onComplete(nil)
++            } catch {
++                onComplete(error)
++            }
++        }
++    }
++}
++
++   
++
++extension Product {
++    static func make(from realmModel: ProductRealmModel) -> Product {
++        Product(
++            id: realmModel.id,
++            dateCreated: realmModel.dateCreated!,
++            name: realmModel.name,
++            price: Decimal(realmModel.price),
++            count: realmModel.count,
++            image: realmModel.imageData.flatMap { UIImage(data: $0) }
++        )
++    }
++}
++
++//func open() {
++//    let user = app.currentUser!
++//    Realm.asyncOpen() { result in
++//        switch result {
++//        case .failure(let error):
++//            print("Failed to open realm: \(error.localizedDescription)")
++//            // Handle error...
++//        case .success(let realm):
++//            // realm successfully opened
+ //        }
+ //    }
+-//    func getProduct(id: Product.Id, onComplete: @escaping (Product) -> Void)
+-//    
+-//    /// Update
+-//    func edit(product: Product, onComplete: @escaping (Error?) -> Void)
+-//    
+-//    /// Delete
+-//    func delete(id: Product.Id, onComplete: @escaping (Error?) -> Void)
+-//    
+ //}
+-//
+-//   

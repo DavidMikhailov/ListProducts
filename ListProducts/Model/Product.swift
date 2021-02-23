@@ -11,8 +11,9 @@ struct Product {
     typealias Id = String
     
     let id: Product.Id
+    let dateCreated: Date
     let name: String
     let price: Decimal
     let count: Int
-    let image: UIImage
+    let image: UIImage?
 }

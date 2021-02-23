@@ -6,7 +6,7 @@ target 'ListProducts' do
   use_frameworks!
 
   # Pods for ListProducts
-  pod 'RealmSwift', '=10.1.4'
-
+  # pod 'RealmSwift', '=10.1.4'
+  pod 'RealmSwift', '~> 3.20.0'
 
 end
