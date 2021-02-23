@@ -21,6 +21,8 @@ protocol ProductsServiceProtocol: class {
 
     /// Delete
     func delete(id: Product.Id, onComplete: @escaping (Error?) -> Void)
+    
+    func observe(onDataUpdated: @escaping () -> Void)
 }
 
 class ProductsService: ProductsServiceProtocol {
@@ -32,9 +34,18 @@ class ProductsService: ProductsServiceProtocol {
         self.database = database
     }
 
+    var observationToken: NotificationToken?
+    func observe(onDataUpdated: @escaping () -> Void) {
+        self.observationToken = database.observe {
+            onDataUpdated()
+        }
+    }
+    
     /// Create
     func create(product: Product, onComplete: @escaping (Error?) -> Void) {
         bgQueue.async {
+            //  Имитируем задержку при создании (указано в тестовом задании)
+            sleep(2)
             let product = ProductRealmModel(
                 id: product.id,
                 name: product.name,

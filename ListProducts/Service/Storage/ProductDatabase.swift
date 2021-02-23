@@ -1,5 +1,5 @@
 //
-//  Database.swift
+//  ProductDatabase.swift
 //  ListProducts
 //
 //  Created by Давид Михайлов on 22.02.2021.
@@ -8,6 +8,13 @@
 import RealmSwift
 
 class ProductDatabase {
+    
+    func observe(onEvent: @escaping () -> Void) -> NotificationToken {
+        let realm = try! Realm()
+        return realm.observe { notification, realm in
+            onEvent()
+        }
+    }
     
     func create(product: ProductRealmModel) throws {
         let realm = try! Realm()

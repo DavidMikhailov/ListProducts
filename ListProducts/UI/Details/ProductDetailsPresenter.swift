@@ -31,6 +31,7 @@ class ProductDetailsPresenter: ProductDetailsPresenterProtocol {
         
     private let context: ProductDetailsContext
     private let service: ProductsServiceProtocol
+    private(set) var isLoading: Bool = false
     
     init(context: ProductDetailsContext, service: ProductsServiceProtocol) {
         self.context = context
@@ -43,10 +44,13 @@ class ProductDetailsPresenter: ProductDetailsPresenterProtocol {
         
         switch context {
         case .exising(let id):
+                        
+            ui.showLoading(true)
             service.getProduct(id: id, onComplete: { [weak self] product in
                 guard let self = self else { return }
                 DispatchQueue.main.async {
                     self.existingProduct = product
+                    self.ui.showLoading(false)
                     self.ui.dataChanged()
                 }
             })
@@ -60,11 +64,16 @@ class ProductDetailsPresenter: ProductDetailsPresenterProtocol {
             return
         }
         let newProduct = Product(id: UUID().uuidString, dateCreated: Date(), name: name, price: priceDecimal, count: countInt, image: image)
+        self.ui.showLoading(true)
         service.create(product: newProduct) { [weak self] error in
-            if let error = error {
-//                self.ui.showError(error)
-            } else {
-                
+            guard let self = self else { return }
+            DispatchQueue.main.async {
+                self.ui.showLoading(false)
+                if let error = error {
+                    self.ui.throwAlert(error.localizedDescription)
+                } else {
+                    self.ui.dismiss()
+                }
             }
         }
     }
@@ -72,13 +81,16 @@ class ProductDetailsPresenter: ProductDetailsPresenterProtocol {
     func remove() {
         switch context {
         case .exising(let id):
+            self.ui.showLoading(true)
             service.delete(id: id) { [weak self] error in
                 guard let self = self else { return }
-                if let error = error {
-                    print(error)
-//                    self.ui.showError(error)
-                } else {
-                    
+                DispatchQueue.main.async {
+                    self.ui.showLoading(false)
+                    if let error = error {
+                        self.ui.throwAlert(error.localizedDescription)
+                    } else {
+                        self.ui.dismiss()
+                    }
                 }
             }
         default:
@@ -100,11 +112,16 @@ class ProductDetailsPresenter: ProductDetailsPresenterProtocol {
                 count: countInt,
                 image: image
             )
+            self.ui.showLoading(true)
             service.edit(product: editingProduct) { [weak self] error in
-                if let error = error {
-    //                self.ui.showError(error)
-                } else {
-                    
+                guard let self = self else { return }
+                DispatchQueue.main.async {
+                    self.ui.showLoading(false)
+                    if let error = error {
+                        self.ui.throwAlert(error.localizedDescription)
+                    } else {
+                        self.ui.dismiss()
+                    }
                 }
             }
         default:
@@ -121,4 +138,5 @@ class ProductDetailsPresenter: ProductDetailsPresenterProtocol {
             return true
         }
     }
+    
 }

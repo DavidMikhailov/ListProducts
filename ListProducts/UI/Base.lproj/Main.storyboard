@@ -78,7 +78,7 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Список товаров" id="fZ0-ga-sGX">
-                        <barButtonItem key="rightBarButtonItem" style="plain" systemItem="add" id="MRt-LV-hib">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="MRt-LV-hib">
                             <connections>
                                 <action selector="addNewProduct:" destination="Mhv-bZ-kkN" id="wu3-uB-Zfu"/>
                             </connections>

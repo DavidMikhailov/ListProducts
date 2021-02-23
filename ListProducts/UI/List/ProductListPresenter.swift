@@ -8,11 +8,13 @@
 import UIKit
 
 protocol ProductListPresenterProtocol: class {
-    var items : [ProductViewModel] { get }
+    var viewModels : [ProductViewModel] { get }
     
     func load(ui: ProductListProtocol)
     
     func getProductId(by row: Int) -> Product.Id
+    
+    func filter(by text: String)
 }
 
 class ProductListPresenter: ProductListPresenterProtocol {
@@ -23,10 +25,36 @@ class ProductListPresenter: ProductListPresenterProtocol {
         self.service = service
     }
     
+    var viewModels: [ProductViewModel] = []
+    
+    private var searchText = ""
+    
+    func filter(by text: String) {
+        self.searchText = text
+        buildViewModel()
+    }
+    
+    private func buildViewModel() {
+        if searchText.isEmpty {
+            viewModels = items
+        } else {
+            let filteredItems = items.filter {
+                $0.name.localizedCaseInsensitiveContains(searchText)
+            }
+            viewModels = filteredItems
+        }
+        ui.dataChanged()
+    }
+    
     func load(ui: ProductListProtocol) {
-        
         self.ui = ui
-        
+        service.observe { [weak self] in
+            self?.reloadDataFromService()
+        }
+        reloadDataFromService()
+    }
+    
+    private func reloadDataFromService() {
         service.getProductList(onComplete: { [weak self] products in
             guard let self = self else {
                 return
@@ -42,8 +70,8 @@ class ProductListPresenter: ProductListPresenterProtocol {
             }
             self.items = viewModels
             DispatchQueue.main.async {
-                self.ui.dataChanged()
-            }            
+                self.buildViewModel()
+            }
         })
     }
     
@@ -51,5 +79,5 @@ class ProductListPresenter: ProductListPresenterProtocol {
         return items[row].id
     }
     
-    var items: [ProductViewModel] = []
+    private var items: [ProductViewModel] = []
 }

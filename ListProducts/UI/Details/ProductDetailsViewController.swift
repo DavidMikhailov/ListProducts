@@ -11,19 +11,12 @@ import RealmSwift
 
 protocol ProductDetailsUI: class {
     func dataChanged()
+    func showLoading(_ isLoading: Bool)
+    func throwAlert(_ message: String)
+    func dismiss()
 }
 
 class ProductDetailsViewController : UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, ProductDetailsUI {
-    
-    func dataChanged() {
-        removeButton.isHidden = !presenter.canEdit
-        if let product = presenter.existingProduct {
-            nameProductTextField.text = product.name
-            quantityProductTextField.text = "\(product.count)"
-            priceTextField.text = "\(product.price)"
-            imageView.image = product.image
-        }
-    }
     
     var presenter: ProductDetailsPresenterProtocol!
     
@@ -58,11 +51,64 @@ class ProductDetailsViewController : UIViewController, UIImagePickerControllerDe
         }
     }
     
+    private let loadingIndicator = LoadingIndicatorView()
+    
+    //MARK: - Toolbar
+    let toolbar = UIToolbar()
+    let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(doneAction))
+    let flexSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+    
+    @objc func doneAction () {
+        view.endEditing(true)
+    }
+    
     override func viewDidLoad() {
-        super.viewDidLoad()
-        presenter.load(ui: self)
+        super.viewDidLoad()        
+        loadingIndicator.isHidden = true
+        navigationController?.view.addSubview(self.loadingIndicator)
         
         self.hideKeyboardWhenTappedAround()
+        
+        presenter.load(ui: self)
+        
+        toolbar.sizeToFit()
+        toolbar.setItems([flexSpace, doneButton], animated: true)
+        
+        nameProductTextField.inputAccessoryView = toolbar
+        quantityProductTextField.inputAccessoryView = toolbar
+        priceTextField.inputAccessoryView = toolbar
+    }
+    
+    
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        loadingIndicator.center = view.center
+    }
+    
+    // MARK: - ProductDetailsUI
+    func dataChanged() {
+        removeButton.isHidden = !presenter.canEdit
+        if let product = presenter.existingProduct {
+            nameProductTextField.text = product.name
+            quantityProductTextField.text = "\(product.count)"
+            priceTextField.text = "\(product.price)"
+            imageView.image = product.image
+        }
+    }
+    
+    func showLoading(_ isLoading: Bool) {
+        loadingIndicator.isHidden = !isLoading
+    }
+        
+    func dismiss() {
+        navigationController?.navigationController?.popViewController(animated: true)
+    }
+    
+    func throwAlert(_ message: String) {
+        let alert = UIAlertController(title: "Ошибка", message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
     }
     
     //Выгружаем изображение из галереи
@@ -89,13 +135,6 @@ class ProductDetailsViewController : UIViewController, UIImagePickerControllerDe
                 }
             }
         }
-    }
-    
-    //Вызывем Alert для показа сообщения пользователю
-    func throwAlert(_ message: String){
-        let alert = UIAlertController(title: "", message: message, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
-        self.present(alert, animated: true, completion: nil)
     }
 }
 
