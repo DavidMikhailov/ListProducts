@@ -1,5 +1,5 @@
 # ListProducts
-In this application I realized creating, editing, deleting and storage items for people how has small business with a storehouse. Layout made in Storyboards and I chose RealmSwift for storage objects.
+In this application I realized creating, editing, deleting and storage items for people how has small business with a storehouse. The layout was made with the help of Storyboards. Also I chose RealmSwift for storage objects.
 
 ![Simulator Screen Shot - iPhone 12 - 2022-03-16 at 10 13 32](https://user-images.githubusercontent.com/74758238/158528574-41bfccd9-193a-43d6-b629-7211eb11b63c.png)
 ![Simulator Screen Shot - iPhone 12 - 2022-03-16 at 10 14 00](https://user-images.githubusercontent.com/74758238/158528576-deb4e2b0-a708-4014-9efc-eb3755385f87.png)
